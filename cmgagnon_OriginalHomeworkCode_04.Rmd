@@ -63,15 +63,17 @@ library(ggpmisc)
 m <- lm(data = d, MaxLongevity_m ~ Brain_Size_Species_Mean)
 summary(m)
 qqPlot(m$residuals)
-ggplot(data = m, aes(x = MaxLongevity_m, y = Brain_Size_Species_Mean)) + geom_point() + geom_smooth(method = "lm", 
+ggplot(data = m, aes(x = MaxLongevity_m, y = Brain_Size_Species_Mean)) + ggtitle("MaxLongevity_m ~ Brain_Size_Species_Mean") + geom_point() + geom_smooth(method = "lm", 
     formula = y ~ x) + stat_poly_eq(formula = y ~ x, aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
-    parse=TRUE,label.x.npc = "right")
+    parse=TRUE,label.x.npc = "left")
 ```
 
 ```{r}
 mlog <- lm(data = d, log(MaxLongevity_m) ~ log(Brain_Size_Species_Mean))
 summary(mlog)
 qqPlot(mlog$residuals)
-
+ggplot(data = m, aes(x = MaxLongevity_m, y = Brain_Size_Species_Mean)) + ggtitle("log(MaxLongevity_m) ~ log(Brain_Size_Species_Mean)") + geom_point() + geom_smooth(method = "lm", 
+    formula = y ~ x) + stat_poly_eq(formula = y ~ x, aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
+    parse=TRUE,label.x.npc = "left")
 ```
 
