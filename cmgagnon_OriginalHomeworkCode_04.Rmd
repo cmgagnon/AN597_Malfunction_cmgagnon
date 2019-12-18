@@ -36,6 +36,37 @@ z.prop.test
 ```
 
 
+```{r}
+Z.prop.test<-function(p1,n1,p0,p2=NULL,n2=NULL,alternative="two.sided",conf.level=0.95)
+{
+  if(is.na(p1))
+    stop("you must enter a value for 'p1'!")
+  if(is.na(n1))
+    stop("you must enter a value for 'n1'!")
+    if(is.na(p0))
+    stop("you must enter a value for 'p0'!")
+  if(!missing(conf.level) &&
+     (length(conf.level) !=1 || !isfinite(conf.level) ||
+      conf.level < 0 || conf.level > 1))
+    stop("'conf.level' must be a single number between 0 and 1")
+  if(is.null(p2) || is.null(n2)) {
+    phat<-p1
+    pi<-p0
+    n<-n1
+    z<-(phat-pi)/sqrt(pi*((1-pi)/n1))
+    names(z)<-"Z score"
+  }
+  else {
+    phat1<-p1
+    phat2<-p2
+    pi<-p0
+    n1<-n1
+    n2<-n2
+    z<-(phat2-phat1)/sqrt
+  }
+}
+```
+
 
 
 
